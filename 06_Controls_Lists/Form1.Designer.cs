@@ -213,6 +213,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(1133, 45);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(119, 41);
