@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace _09_RichTextBox
 {
@@ -24,7 +26,7 @@ namespace _09_RichTextBox
 
         private void button2_Click(object sender, EventArgs e)
         {
-            richTextBox1.SelectionColor = Color.GreenYellow;    
+            richTextBox1.SelectionColor = Color.GreenYellow;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -60,7 +62,7 @@ namespace _09_RichTextBox
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             FontDialog font = new FontDialog();
-            if(font.ShowDialog() == DialogResult.OK)
+            if (font.ShowDialog() == DialogResult.OK)
             {
                 richTextBox1.SelectionFont = font.Font;
             }
@@ -82,6 +84,23 @@ namespace _09_RichTextBox
                 BackColor = Color.Green;
             else
                 BackColor = Color.LightGray;
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+
+            save.CreatePrompt = true;
+            save.DefaultExt = ".rtf";
+            save.OverwritePrompt = true;
+
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter writer = new StreamWriter(save.FileName);
+                writer.Write(richTextBox1.Text);
+                writer.Close();
+
+            }
         }
     }
 }
